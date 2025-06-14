@@ -18,7 +18,7 @@ export const useQuiz = () => {
   useEffect(() => {
     const loadQuestions = async () => {
       try {
-        const response = await fetch('/data/questions.json')
+        const response = await fetch('./data/questions.json')
         const data: QuizData = await response.json()
         setAllQuestions(data)
       } catch (error) {
