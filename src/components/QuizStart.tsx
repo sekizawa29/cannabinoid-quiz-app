@@ -128,10 +128,10 @@ const QuizStart: React.FC<QuizStartProps> = ({ onStartQuiz, isLoading }) => {
             >
               <img
                 src="./joint-ya-logo.png"
-                alt="ジョイント屋"
+                alt="CBD製品ストア"
                 className="h-6 w-auto"
               />
-              <span className="text-sm font-medium">ジョイント屋</span>
+              <span className="text-sm font-medium">CBD製品ストア</span>
             </a>
             <p className="text-xs text-gray-400 mt-1">高品質なCBD製品をお届けします</p>
           </div>
