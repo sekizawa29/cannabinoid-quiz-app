@@ -116,6 +116,26 @@ const QuizStart: React.FC<QuizStartProps> = ({ onStartQuiz, isLoading }) => {
             </div>
           </div>
         </div>
+
+        <div className="mt-8 text-center">
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
+            <p className="text-xs text-gray-500 mb-2">提供</p>
+            <a
+              href="https://drowse.shop/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors duration-200"
+            >
+              <img
+                src="./joint-ya-logo.png"
+                alt="ジョイント屋"
+                className="h-6 w-auto"
+              />
+              <span className="text-sm font-medium">ジョイント屋</span>
+            </a>
+            <p className="text-xs text-gray-400 mt-1">高品質なCBD製品をお届けします</p>
+          </div>
+        </div>
       </div>
     </div>
   )
