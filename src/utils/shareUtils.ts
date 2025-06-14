@@ -1,13 +1,17 @@
 import type { QuizResult } from '../types/quiz'
 
 export const generateShareText = (result: QuizResult): string => {
-  const { score, totalQuestions, percentage, difficulty } = result
+  const { score, totalQuestions, percentage, category } = result
   
-  const difficultyText = {
-    beginner: '初級',
-    intermediate: '中級', 
-    advanced: '上級'
-  }[difficulty]
+  const categoryText = {
+    cbd: 'CBD基礎知識',
+    cbn: 'CBN（睡眠成分）',
+    cbg: 'CBG（母なるカンナビノイド）',
+    thc: 'THC知識',
+    legal: '法律・規制',
+    health: '健康・医療',
+    botany: '大麻植物学'
+  }[category]
   
   let emoji = '📚'
   let comment = ''
@@ -26,8 +30,8 @@ export const generateShareText = (result: QuizResult): string => {
     comment = 'keep learning!'
   }
   
-  return `カンナビノイドクイズ【${difficultyText}】で${score}/${totalQuestions}問正解！(${percentage}%) ${comment} ${emoji}
-あなたの知識レベルは？🧪
+  return `カンナビノイドクイズ【${categoryText}】で${score}/${totalQuestions}問正解！(${percentage}%) ${comment} ${emoji}
+ゲーム感覚で楽しく学ぼう！🧪
 #カンナビノイドクイズ #CBD #教育`
 }
 

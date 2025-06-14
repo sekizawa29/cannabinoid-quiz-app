@@ -1,7 +1,7 @@
 import React from 'react'
 import type { QuizResult as QuizResultType, Question } from '../types/quiz'
 import { getResultComment, generateShareText, shareToX } from '../utils/shareUtils'
-import { DIFFICULTY_LABELS } from '../types/quiz'
+import { CATEGORY_LABELS } from '../types/quiz'
 
 interface QuizResultProps {
   result: QuizResultType
@@ -67,7 +67,7 @@ const QuizResult: React.FC<QuizResultProps> = ({ result, questions, onRestart })
                 onClick={onRestart}
                 className="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
               >
-                もう一度挑戦
+                TOPに戻る
               </button>
             </div>
           </div>
@@ -78,9 +78,9 @@ const QuizResult: React.FC<QuizResultProps> = ({ result, questions, onRestart })
             </h3>
             <div className="grid md:grid-cols-3 gap-4 text-center">
               <div className="bg-gray-50 p-4 rounded-lg">
-                <p className="text-gray-600 text-sm">難易度</p>
+                <p className="text-gray-600 text-sm">カテゴリ</p>
                 <p className="font-semibold text-lg">
-                  {DIFFICULTY_LABELS[result.difficulty]}
+                  {CATEGORY_LABELS[result.category]}
                 </p>
               </div>
               <div className="bg-gray-50 p-4 rounded-lg">

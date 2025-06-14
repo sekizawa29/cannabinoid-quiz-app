@@ -1,23 +1,31 @@
 import React from 'react'
-import type { Difficulty } from '../types/quiz'
-import { DIFFICULTY_LABELS, DIFFICULTY_DESCRIPTIONS } from '../types/quiz'
+import type { Category } from '../types/quiz'
+import { CATEGORY_LABELS, CATEGORY_DESCRIPTIONS, CATEGORY_EMOJIS } from '../types/quiz'
 
 interface QuizStartProps {
-  onStartQuiz: (difficulty: Difficulty) => void
+  onStartQuiz: (category: Category) => void
   isLoading: boolean
 }
 
 const QuizStart: React.FC<QuizStartProps> = ({ onStartQuiz, isLoading }) => {
-  const difficulties: Difficulty[] = ['beginner', 'intermediate', 'advanced']
+  const categories: Category[] = ['cbd', 'cbn', 'cbg', 'thc', 'legal', 'health', 'botany']
 
-  const getDifficultyColor = (difficulty: Difficulty): string => {
-    switch (difficulty) {
-      case 'beginner':
+  const getCategoryColor = (category: Category): string => {
+    switch (category) {
+      case 'cbd':
         return 'bg-green-500 hover:bg-green-600'
-      case 'intermediate':
+      case 'cbn':
+        return 'bg-purple-500 hover:bg-purple-600'
+      case 'cbg':
         return 'bg-yellow-500 hover:bg-yellow-600'
-      case 'advanced':
+      case 'thc':
         return 'bg-red-500 hover:bg-red-600'
+      case 'legal':
+        return 'bg-blue-500 hover:bg-blue-600'
+      case 'health':
+        return 'bg-pink-500 hover:bg-pink-600'
+      case 'botany':
+        return 'bg-emerald-500 hover:bg-emerald-600'
     }
   }
 
@@ -40,39 +48,42 @@ const QuizStart: React.FC<QuizStartProps> = ({ onStartQuiz, isLoading }) => {
             🧪 カンナビノイドクイズ
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-2">
-            カンナビノイドに関する知識・教養を深めましょう
+            ゲーム感覚で楽しく基礎知識を学ぼう！
           </p>
           <p className="text-sm md:text-base text-gray-500">
-            全5問の選択問題に挑戦してください
+            興味のあるカテゴリから5問の選択問題に挑戦
           </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <h2 className="text-2xl font-semibold text-gray-800 text-center mb-8">
-            難易度を選択してください
+            学びたいカテゴリを選択してください
           </h2>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {difficulties.map((difficulty) => (
+          <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {categories.map((category) => (
               <div
-                key={difficulty}
+                key={category}
                 className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
               >
                 <div className="p-6">
                   <div className="text-center mb-4">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                      {DIFFICULTY_LABELS[difficulty]}
+                    <div className="text-4xl mb-3">
+                      {CATEGORY_EMOJIS[category]}
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">
+                      {CATEGORY_LABELS[category]}
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      {DIFFICULTY_DESCRIPTIONS[difficulty]}
+                      {CATEGORY_DESCRIPTIONS[category]}
                     </p>
                   </div>
                   
                   <button
-                    onClick={() => onStartQuiz(difficulty)}
-                    className={`w-full py-3 px-6 rounded-lg text-white font-semibold transition-colors duration-200 ${getDifficultyColor(difficulty)}`}
+                    onClick={() => onStartQuiz(category)}
+                    className={`w-full py-3 px-6 rounded-lg text-white font-semibold transition-colors duration-200 ${getCategoryColor(category)}`}
                   >
-                    開始する
+                    挑戦する
                   </button>
                 </div>
               </div>
@@ -85,10 +96,14 @@ const QuizStart: React.FC<QuizStartProps> = ({ onStartQuiz, isLoading }) => {
             <h3 className="text-lg font-semibold text-gray-800 mb-4">
               クイズについて
             </h3>
-            <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-600">
+            <div className="grid md:grid-cols-4 gap-4 text-sm text-gray-600">
               <div className="flex flex-col items-center">
                 <span className="text-2xl mb-2">📝</span>
                 <p>全5問の選択問題</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-2xl mb-2">💡</span>
+                <p>ヒント機能付き</p>
               </div>
               <div className="flex flex-col items-center">
                 <span className="text-2xl mb-2">⏰</span>

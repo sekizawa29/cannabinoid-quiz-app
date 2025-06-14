@@ -24,7 +24,7 @@ function App() {
     )
   }
 
-  if (quizState.difficulty && quizState.questions.length > 0) {
+  if (quizState.category && quizState.questions.length > 0) {
     const currentQuestion = getCurrentQuestion()
     const progress = getProgress()
     

@@ -15,6 +15,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
   onAnswer
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
+  const [showHint, setShowHint] = useState<boolean>(false)
 
   const handleAnswerSelect = (answerIndex: number) => {
     setSelectedAnswer(answerIndex)
@@ -24,7 +25,12 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
     if (selectedAnswer !== null) {
       onAnswer(selectedAnswer)
       setSelectedAnswer(null)
+      setShowHint(false)
     }
+  }
+
+  const toggleHint = () => {
+    setShowHint(!showHint)
   }
 
   const progress = (questionNumber / totalQuestions) * 100
@@ -52,9 +58,28 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
           </div>
 
           <div className="mb-8">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6 leading-relaxed">
-              {question.question}
-            </h2>
+            <div className="flex justify-between items-start mb-6">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 leading-relaxed flex-1 mr-4">
+                {question.question}
+              </h2>
+              <button
+                onClick={toggleHint}
+                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2 flex-shrink-0"
+              >
+                💡 ヒント
+              </button>
+            </div>
+
+            {showHint && (
+              <div className="mb-6 p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded-r-lg">
+                <div className="flex items-start">
+                  <span className="text-yellow-600 text-lg mr-2">💡</span>
+                  <p className="text-gray-700 text-sm md:text-base">
+                    <strong>ヒント:</strong> {question.hint}
+                  </p>
+                </div>
+              </div>
+            )}
 
             <div className="space-y-3">
               {question.options.map((option, index) => (

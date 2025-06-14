@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import type { Difficulty, Question, QuizState, UserAnswer, QuizResult, QuizData } from '../types/quiz'
+import type { Category, Question, QuizState, UserAnswer, QuizResult, QuizData } from '../types/quiz'
 
 const QUESTIONS_PER_QUIZ = 5
 
 export const useQuiz = () => {
   const [quizState, setQuizState] = useState<QuizState>({
-    difficulty: null,
+    category: null,
     currentQuestionIndex: 0,
     questions: [],
     answers: [],
@@ -29,15 +29,15 @@ export const useQuiz = () => {
     loadQuestions()
   }, [])
 
-  const startQuiz = (difficulty: Difficulty) => {
+  const startQuiz = (category: Category) => {
     if (!allQuestions) return
 
-    const questionsForDifficulty = allQuestions[difficulty]
-    const shuffledQuestions = [...questionsForDifficulty].sort(() => Math.random() - 0.5)
+    const questionsForCategory = allQuestions[category]
+    const shuffledQuestions = [...questionsForCategory].sort(() => Math.random() - 0.5)
     const selectedQuestions = shuffledQuestions.slice(0, QUESTIONS_PER_QUIZ)
 
     setQuizState({
-      difficulty,
+      category,
       currentQuestionIndex: 0,
       questions: selectedQuestions,
       answers: [],
@@ -64,7 +64,7 @@ export const useQuiz = () => {
       const percentage = Math.round((score / QUESTIONS_PER_QUIZ) * 100)
       
       const result: QuizResult = {
-        difficulty: quizState.difficulty!,
+        category: quizState.category!,
         score,
         totalQuestions: QUESTIONS_PER_QUIZ,
         percentage,
@@ -89,7 +89,7 @@ export const useQuiz = () => {
 
   const resetQuiz = () => {
     setQuizState({
-      difficulty: null,
+      category: null,
       currentQuestionIndex: 0,
       questions: [],
       answers: [],
